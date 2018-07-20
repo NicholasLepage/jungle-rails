@@ -1,9 +1,8 @@
 class UserMailer < ApplicationMailer
 
-  default from: "no-reply@jungle.com"
-
-  def order_email(user)
-    @user = user
-    mail(to: @user.email, subject: @user.id)
+  def sample_email(order)
+    @order = order
+    mail(to: @order.email, subject: @order.id)
   end
+  
 end
