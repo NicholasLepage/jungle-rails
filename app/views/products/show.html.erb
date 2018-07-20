@@ -28,4 +28,61 @@
 
   </article>
 
+  <article class="reviews-box">
+  <br />
+  <br />
+  <div class="row">
+    <h3>Review this product</h3>
+    <div class="col-sm-6 col-sm-offset-1">
+      <%= form_for [@product, @review] do |form| %>
+
+        <% if form.object.errors.any? %>
+          <div class="alert alert-danger">
+            <strong>The following errors prevented saving:</strong>
+            <ul>
+              <% form.object.errors.full_messages.each do |error| %>
+                <li><%= error %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'form-control' %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :rating %>
+          <%= form.select :rating, [1, 2, 3, 4, 5] %>
+        </div>
+
+        <%= form.submit 'Post Comment', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+
+
+    <h2 class="reviews-header"> Reviews </h2>
+      <div class="row reviews">
+        <% @reviews.each do |detail| %>
+          <% if detail.persisted? %>
+            <div class="col-sm-8">
+              <dl class="dl-horizontal">
+                <% if current_user.firstname == detail.user.firstname %>
+                  <%= link_to fa_icon('trash'), product_review_path(@product, detail), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+                <% end %>
+                <dt>User</dt>
+                <dd><%= detail.user.firstname %> <%= detail.user.lastname %></dd>
+                <dt>Rating</dt>
+                <dd><%= detail.rating %> / 5</dd>
+                <dt>Description</dt>
+                <dd><%= detail.description %></dd>
+              </dl>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+  </article>
+
 </section>
