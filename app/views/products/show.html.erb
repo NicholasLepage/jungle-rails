@@ -69,11 +69,13 @@
           <% if detail.persisted? %>
             <div class="col-sm-8">
               <dl class="dl-horizontal">
+                <dt>User</dt>
+                <dd>
+                <%= detail.user.firstname %> <%= detail.user.lastname %>
                 <% if current_user.firstname == detail.user.firstname %>
                   <%= link_to fa_icon('trash'), product_review_path(@product, detail), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
                 <% end %>
-                <dt>User</dt>
-                <dd><%= detail.user.firstname %> <%= detail.user.lastname %></dd>
+                </dd>
                 <dt>Rating</dt>
                 <dd><%= detail.rating %> / 5</dd>
                 <dt>Description</dt>
