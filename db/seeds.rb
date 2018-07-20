@@ -132,5 +132,36 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+user1 = User.find_or_create_by!({
+  id: 100,
+  firstname: "Michael",
+  lastname: "Jackson",
+  email: "MichaelJackson@SmoothCriminal.com",
+  password_digest: "bigboi"
+})
+
+Review.find_or_create_by!({
+  id: 21,
+  user_id: 100,
+  product_id: 11,
+  description: Faker::Hipster.paragraph(4),
+  rating: 5
+})
+
+Review.find_or_create_by!({
+  id: 20,
+  user_id: 100,
+  product_id: 12,
+  description: Faker::Hipster.paragraph(4),
+  rating: 4
+})
+
+Review.find_or_create_by!({
+  id: 22,
+  user_id: 100,
+  product_id: 11,
+  description: Faker::Hipster.paragraph(4),
+  rating: 1
+})
 
 puts "DONE!"
