@@ -35,6 +35,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'stripe'
 gem 'faker'
+gem "auto_strip_attributes", "~> 2.2"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
